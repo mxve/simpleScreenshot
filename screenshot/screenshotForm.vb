@@ -6,13 +6,11 @@ Friend Class screenshotForm
 
     Public bmp As Bitmap
     Public base64 As String
-
-    Private _hint As String = "The green area marks the screenshot." + vbNewLine + vbNewLine + "Press <ENTER> to capture"
-
-    Private _generateBase64 As Boolean = False
+    Private _settings As misc.Settings
 
     Private lbl As New Label
-    Private borderPen As Pen
+
+    Private imgConv As New ImageConverter
 
 #Region "move form"
     ' Make form moveable; Visual Studio snippet
@@ -46,7 +44,7 @@ Friend Class screenshotForm
     End Sub
 
     Private Sub sForm_paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
-        e.Graphics.DrawRectangle(borderPen, New Rectangle(2, 2, Width - 4, Height - 4))
+        e.Graphics.DrawRectangle(_settings.Pen, New Rectangle(2, 2, Width - 4, Height - 4))
     End Sub
 
     Private Function takeAreaScreenshot(location As Point, size As Point) As Bitmap
@@ -69,43 +67,39 @@ Friend Class screenshotForm
     End Sub
 
     Private Sub returnScreenshot(screen As Bitmap)
-        Dim conv As New ImageConverter
-        If _generateBase64 Then base64 = Convert.ToBase64String(conv.ConvertTo(screen, GetType(Byte())))
-        bmp = screen
+        Select Case _settings.Format
+            Case misc.screenshotFormat.Bitmap
+                bmp = screen
+            Case misc.screenshotFormat.Base64
+                base64 = Convert.ToBase64String(imgConv.ConvertTo(screen, GetType(Byte())))
+        End Select
         DialogResult = DialogResult.OK
     End Sub
 
     Private Sub setup()
-        Dim sFormResizer As New FormResizer(Me, 6)
+        Dim sFormResizer As New FormResizer(Me, _settings.ResizeWidth)
 
-        Opacity = 0.7
-        Size = New Point(450, 300)
+        Opacity = _settings.Opacity
+        Size = _settings.Size
         FormBorderStyle = FormBorderStyle.None
-        BackColor = Color.LightGreen
+        BackColor = _settings.BackColor
         ResizeRedraw = True
-        borderPen = New Pen(Color.FromArgb(190, 100, 100, 100), 2)
-        borderPen.DashStyle = Drawing2D.DashStyle.Dot
+        _settings.Pen.DashStyle = _settings.DashStyle
 
-        lbl.Text = _hint
+        lbl.Text = _settings.Hint
         lbl.AutoSize = True
         centerText()
         Controls.Add(lbl)
     End Sub
 
     Public Sub New()
+        Dim settings As misc.Settings
+        _settings = settings
         setup()
     End Sub
 
-    Public Sub New(generateBase64 As Boolean)
-        _generateBase64 = generateBase64
-
-        setup()
-    End Sub
-
-    Public Sub New(generateBase64 As Boolean, hint As String)
-        _generateBase64 = generateBase64
-        _hint = hint
-
+    Public Sub New(settings As misc.Settings)
+        _settings = settings
         setup()
     End Sub
 End Class

@@ -2,16 +2,34 @@
 VB.Net library to take screenshots from user selection  
   
   
-## Example preview
+## Example
 ![preview](preview.gif)
 
   
 ### Usage
-See [example](example/Form1.vb)
+See [example project](example/Form1.vb)
 ```
-simpleScreenshot.selection.captureBmp()
-simpleScreenshot.selection.captureBase64("Now another screenshot to encode as base64")
+Dim sc as Bitmap = selection.capture()
 ```
+
+#### Using settings
+```
+Dim settings as misc.settings
+settings.Opacity = 0.5
+Dim sc as Bitmap = selection.capture(settings)
+```
+##### Available settings [and default values]
+- **Opacity** as *Single* [0.7]
+- **Pen** as *Pen* [FromArgb(190, 100, 100, 100), 2]
+- **Size** as *Point* [450, 300]
+- **BackColor** as *Color* [LightGreen]
+- **DashStyle** as *Drawing2D.Dashstyle*<sup>1</sup> [Dot]
+- **Hint** as *String* ["The green area marks the screenshot." + vbNewLine + vbNewLine + "Press <ENTER> to capture"]
+- **ResizeWidth** as *Integer* [6]
+- **Format** as *misc.screenshotFormat* [screenshotFormat.Bitmap]
+
+
+<sup>1</sup>Redundant, but makes it more obvious how to change the dashed border
   
 ### User controls
 - Resize on edges<sup>1</sup>
