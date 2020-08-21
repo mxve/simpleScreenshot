@@ -25,7 +25,7 @@ Dim sc as Bitmap = selection.capture(settings)
 - **Size** as *Point* [450, 300]
 - **BackColor** as *Color* [LightGreen]
 - **DashStyle** as *Drawing2D.Dashstyle*<sup>1</sup> [Dot]
-- **Hint** as *String* ["The green area marks the screenshot." + vbNewLine + vbNewLine + "Press <ENTER> to capture"]
+- **Hint** as *String* ["The green area marks the screenshot." + vbNewLine + vbNewLine + "Press &lt;ENTER&gt; to capture"]
 - **ResizeWidth** as *Integer* [6]
 - **Format** as *misc.screenshotFormat* [screenshotFormat.Bitmap]
 
