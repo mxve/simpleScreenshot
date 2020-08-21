@@ -62,6 +62,7 @@ Friend Class screenshotForm
                 Me.Close()
             ' Cancel
             Case Keys.KeyCode.Escape
+                DialogResult = DialogResult.Cancel
                 Me.Close()
         End Select
     End Sub
