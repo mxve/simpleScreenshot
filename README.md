@@ -11,6 +11,7 @@ See [example project](example/Form1.vb)
 ```
 Dim sc as Bitmap = selection.capture()
 ```
+`capture` will return *Nothing* when the screenshot dialog gets canceled 
 
 #### Using settings
 ```
