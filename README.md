@@ -18,7 +18,7 @@ Dim settings as misc.settings
 settings.Opacity = 0.5
 Dim sc as Bitmap = selection.capture(settings)
 ```
-##### Available settings [and default values]
+#### Available settings [and default values]
 - **Opacity** as *Single* [0.7]
 - **Pen** as *Pen* [FromArgb(190, 100, 100, 100), 2]
 - **Size** as *Point* [450, 300]
