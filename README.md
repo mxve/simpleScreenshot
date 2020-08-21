@@ -1,20 +1,23 @@
 # simpleScreenshot
 VB.Net library to take screenshots from user selection  
   
+  
+## Example preview
 ![preview](preview.gif)
 
   
 ### Usage
 See [example](example/Form1.vb)
-```simpleScreenshot.selection.captureBmp()
-simpleScreenshot.selection.captureBase64("Now another screenshot to encode as base64")```
+```
+simpleScreenshot.selection.captureBmp()
+simpleScreenshot.selection.captureBase64("Now another screenshot to encode as base64")
+```
   
 ### User controls
 - Resize on edges<sup>1</sup>
 - Move by holding LMB
 - Press Enter to capture screenshot
 - Press Escape to cancel
-
 
   
 ### Credits  
