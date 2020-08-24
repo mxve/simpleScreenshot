@@ -30,7 +30,7 @@ Dim sc as Bitmap = selection.capture(settings)
 - **Format** as *misc.screenshotFormat* [screenshotFormat.Bitmap]
 
 
-<sup>1</sup>Redundant, but makes it more obvious how to change the dashed border
+<sup>1</sup>Redundant as you would normally set this directly on the pen, but makes it more obvious how to change the dashed border
   
 ### User controls
 - Resize on edges<sup>1</sup>
